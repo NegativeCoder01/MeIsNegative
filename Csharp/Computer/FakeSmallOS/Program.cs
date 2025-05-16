@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 
 namespace breadOS
 {
@@ -50,10 +51,92 @@ namespace breadOS
             }
         }
 
+        public static void LogCommand(string path, string command)
+        {
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine($"{DateTime.Now}: {command}");
+            }
+        }
+
+        public static string ReadCommandWithHistory(List<string> history)
+        {
+            StringBuilder input = new StringBuilder();
+            int historyIndex = history.Count;
+            int cursorLeft = Console.CursorLeft;
+            int cursorTop = Console.CursorTop;
+
+            while (true)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine();
+                    return input.ToString();
+                }
+                else if (key.Key == ConsoleKey.Backspace)
+                {
+                    if (input.Length > 0)
+                    {
+                        input.Remove(input.Length - 1, 1);
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                        Console.Write(new string(' ', Console.WindowWidth - cursorLeft));
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                        Console.Write(input.ToString());
+                    }
+                }
+                else if (key.Key == ConsoleKey.UpArrow)
+                {
+                    if (history.Count > 0 && historyIndex > 0)
+                    {
+                        historyIndex--;
+                        input.Clear();
+                        input.Append(history[historyIndex]);
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                        Console.Write(new string(' ', Console.WindowWidth - cursorLeft));
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                        Console.Write(input.ToString());
+                    }
+                }
+                else if (key.Key == ConsoleKey.DownArrow)
+                {
+                    if (history.Count > 0 && historyIndex < history.Count - 1)
+                    {
+                        historyIndex++;
+                        input.Clear();
+                        input.Append(history[historyIndex]);
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                        Console.Write(new string(' ', Console.WindowWidth - cursorLeft));
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                        Console.Write(input.ToString());
+                    }
+                    else if (historyIndex == history.Count - 1)
+                    {
+                        historyIndex++;
+                        input.Clear();
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                        Console.Write(new string(' ', Console.WindowWidth - cursorLeft));
+                        Console.SetCursorPosition(cursorLeft, cursorTop);
+                    }
+                }
+                else
+                {
+                    input.Append(key.KeyChar);
+                    Console.Write(key.KeyChar);
+                }
+            }
+        }
+
         public static void Main()
         {
-            string configPath = "/workspaces/MeIsNegative/Csharp/Computer/FakeSmallOS/data.conf";
+            string configPath = "/workspaces/MeIsNegative/Csharp/Computer/FakeSmallOS/data.conf"; //enter correct path here to run, I am in codespace so this path works for me
+            string historyPath = "/workspaces/MeIsNegative/Csharp/Computer/FakeSmallOS/data.conf";
             var config = LoadConfig(configPath);
+
+            List<string> commandHistory = new List<string>();
+            if (File.Exists(historyPath))
+                commandHistory.AddRange(File.ReadAllLines(historyPath));
 
             bool user_Exist = config.ContainsKey("user_Exist") && config["user_Exist"] == "true";
             bool user_Logged = false;
@@ -105,11 +188,15 @@ namespace breadOS
                     else
                     {
                         Console.Write("Type your command (Type --help for help): ");
-                        string commandInput = Console.ReadLine();
+                        string commandInput = ReadCommandWithHistory(commandHistory);
+
+                        commandHistory.Add(commandInput);
+                        LogCommand(historyPath, commandInput);
 
                         switch (commandInput)
                         {
                             case "--help":
+                                Console.WriteLine("");
                                 Console.WriteLine("Help: ");
                                 Console.WriteLine(" ");
                                 Console.WriteLine("User commands: ");
@@ -117,10 +204,16 @@ namespace breadOS
                                 Console.WriteLine("user --change password : changes password");
                                 Console.WriteLine("user --change username : Changes username");
                                 Console.WriteLine("user --logout : logs out the user");
+                                Console.WriteLine("user --history.clear : clears your command history");
                                 Console.WriteLine("");
                                 Console.WriteLine("System commands: ");
                                 Console.WriteLine("sys --reboot : Reboots the OS");
                                 Console.WriteLine("sys --reboot.wipe : Reboots and wipes everything");
+                                Console.WriteLine("");
+                                Console.WriteLine("Application commands: ");
+                                Console.WriteLine("app --install.help : shows you avaliable packages");
+                                Console.WriteLine("app --install [package name] : installs the application based off the package");
+                                Console.WriteLine("");
                                 break;
 
                             case "user --del user[]":
@@ -241,6 +334,7 @@ namespace breadOS
                                         config["user_Exist"] = "false";
                                         config["username"] = "";
                                         config["password"] = "";
+                                        config["randomjokeInstalled"] = "false";
                                         SaveConfig(configPath, config);
                                     }
                                     else
@@ -254,9 +348,52 @@ namespace breadOS
                                 }
                                 break;
 
-                            default:
-                                Console.WriteLine("Unknown command. Type --help for available commands.");
+                            case "app --install.help":
+                                Console.WriteLine("");
+                                Console.WriteLine("Availiable packages: ");
+                                Console.WriteLine("app.randomjoke.bap");
+                                Console.WriteLine("");
                                 break;
+
+                            case "app --install app.randomjoke.bap":
+                                if (config.ContainsKey("randomjokeInstalled") && config["randomjokeInstalled"] == "true")
+                                {
+                                    Console.WriteLine("Package is already installed!");
+                                    Console.WriteLine("Run \"randomjoke\" to run the program.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("[installing packages...]");
+                                    Thread.Sleep(850);
+                                    Console.WriteLine("Package installed!");
+                                    Console.WriteLine("run \"randomjoke\" to start the application!");
+                                    config["randomjokeInstalled"] = "true";
+                                    SaveConfig(configPath, config);
+                                }
+                                break;
+
+                            case "randomjoke":
+                                if (config.ContainsKey("randomjokeInstalled") && config["randomjokeInstalled"] == "true")
+                                {
+                                    string[] jokes = {
+                                        "Knock knock, who's there, your dad, my dad who? ....",
+                                        "Why did the chicken want to cross the road... because it was.",
+                                        "Before crow bars were invented, crows drank at home."
+                                    };
+                                    Random r = new Random();
+                                    Console.WriteLine(jokes[r.Next(jokes.Length)]);
+                                }
+
+                                else
+                                {
+                                    Console.WriteLine("Package not installed. Run app --install app.randomjoke.bap to install it.");
+                                }
+                                break;
+
+                            case "user --history.clear":
+                                File.WriteAllText(historyPath, string.Empty);
+                                Console.WriteLine("History cleared, next time you reboot your system past commands will be gone...");
+                                break;           
                         }
                     }
                 }
