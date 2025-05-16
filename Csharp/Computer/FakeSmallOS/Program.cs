@@ -131,7 +131,7 @@ namespace breadOS
         public static void Main()
         {
             string configPath = "/workspaces/MeIsNegative/Csharp/Computer/FakeSmallOS/data.conf"; //enter correct path here to run, I am in codespace so this path works for me
-            string historyPath = "/workspaces/MeIsNegative/Csharp/Computer/FakeSmallOS/data.conf";
+            string historyPath = "/workspaces/MeIsNegative/Csharp/Computer/FakeSmallOS/history.txt"; //same here
             var config = LoadConfig(configPath);
 
             List<string> commandHistory = new List<string>();
@@ -215,7 +215,6 @@ namespace breadOS
                                 Console.WriteLine("app --install [package name] : installs the application based off the package");
                                 Console.WriteLine("");
                                 break;
-
                             case "user --del user[]":
                                 Console.Write("Enter your username: ");
                                 string usernameDelInput = Console.ReadLine();
@@ -253,7 +252,6 @@ namespace breadOS
                                     Console.WriteLine("INCORRECT USERNAME OR PASSWORD!");
                                 }
                                 break;
-
                             case "user --change password":
                                 Console.Write("Enter your username: ");
                                 string usernameChangePassInput = Console.ReadLine();
@@ -276,7 +274,6 @@ namespace breadOS
                                     Console.WriteLine("INCORRECT USERNAME OR PASSWORD!");
                                 }
                                 break;
-
                             case "user --change username":
                                 Console.Write("Enter your username: ");
                                 string usernameChangeNameInput = Console.ReadLine();
@@ -299,17 +296,14 @@ namespace breadOS
                                     Console.WriteLine("INCORRECT USERNAME OR PASSWORD!");
                                 }
                                 break;
-
                             case "user --logout":
                                 Console.WriteLine("Goodbye...");
                                 user_Logged = false;
                                 break;
-
                             case "sys --reboot":
                                 Console.WriteLine("Rebooting...");
                                 user_Logged = false;
                                 break;
-
                             case "sys --reboot.wipe":
                                 Console.Write("Enter your username: ");
                                 string usernameSysWipe = Console.ReadLine();
@@ -335,6 +329,7 @@ namespace breadOS
                                         config["username"] = "";
                                         config["password"] = "";
                                         config["randomjokeInstalled"] = "false";
+                                        config["numbercomboInstalled"] = "false";
                                         SaveConfig(configPath, config);
                                     }
                                     else
@@ -347,14 +342,14 @@ namespace breadOS
                                     Console.WriteLine("INCORRECT USERNAME OR PASSWORD!");
                                 }
                                 break;
-
                             case "app --install.help":
                                 Console.WriteLine("");
                                 Console.WriteLine("Availiable packages: ");
                                 Console.WriteLine("app.randomjoke.bap");
+                                Console.WriteLine("app.numbercombo.bap");
                                 Console.WriteLine("");
+                                Console.WriteLine("BAP stands for Bread application Packager");
                                 break;
-
                             case "app --install app.randomjoke.bap":
                                 if (config.ContainsKey("randomjokeInstalled") && config["randomjokeInstalled"] == "true")
                                 {
@@ -371,7 +366,6 @@ namespace breadOS
                                     SaveConfig(configPath, config);
                                 }
                                 break;
-
                             case "randomjoke":
                                 if (config.ContainsKey("randomjokeInstalled") && config["randomjokeInstalled"] == "true")
                                 {
@@ -389,11 +383,80 @@ namespace breadOS
                                     Console.WriteLine("Package not installed. Run app --install app.randomjoke.bap to install it.");
                                 }
                                 break;
-
                             case "user --history.clear":
                                 File.WriteAllText(historyPath, string.Empty);
                                 Console.WriteLine("History cleared, next time you reboot your system past commands will be gone...");
-                                break;           
+                                break;
+                            case "app --install app.numbercombo.bap":
+                                if (config.ContainsKey("numbercomboInstalled") && config["numbercomboInstalled"] == "true")
+                                {
+                                    Console.WriteLine("Package is already installed...");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("[Installing packages...]");
+                                    Thread.Sleep(883);
+                                    Console.WriteLine("Packages installed!");
+                                    Console.WriteLine("Type \"numbercombo\" to run it");
+                                    config["numbercomboInstalled"] = "true";
+                                }
+                                break;
+                            case "numbercombo":
+                                if (config.ContainsKey("numbercomboInstalled") && config["numbercomboInstalled"] == "true")
+                                {
+                                    Console.Write("Enter the number of digits in the combination (1 to 18): ");
+                                    if (!int.TryParse(Console.ReadLine(), out int digits) || digits < 1 || digits > 18)
+                                    {
+                                        Console.WriteLine("Invalid input. Please enter a number between 1 and 18.");
+                                        return;
+                                    }
+
+                                    long max = (long)Math.Pow(10, digits);
+
+                                    for (long i = 0; i < max; i++)
+                                    {
+                                        Console.WriteLine(i.ToString().PadLeft(digits, '0'));
+                                    }
+
+                                    Console.WriteLine("Done! Press any key to exit.");
+                                    Console.ReadKey();
+                                }
+                                else
+                                {
+                                    Console.Write("package is not installed, would you like to install it? N/y: ");
+                                    string numbercomboInstallConfirmation = Console.ReadLine();
+
+                                    if (numbercomboInstallConfirmation == "y")
+                                    {
+                                        Console.WriteLine("[installing packages...]");
+                                        Thread.Sleep(1476);
+                                        Console.WriteLine("Packages installed!");
+                                        Console.WriteLine(" Type \"numbercombo\" to run it");
+                                        config["numbercomboInstalled"] = "true";
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Installation cancled...");
+                                    }
+                                }
+                                break;
+                            case "app --remove app.numbercombo.bap":
+                                Console.WriteLine("Removed numbercombo!");
+                                config["numbercomboInstalled"] = "false";
+                                break;
+                            case "app --remove app.randomjoke.bap":
+                                Console.WriteLine("Removed randomjoke!");
+                                config["randomjokeInstalled"] = "false";
+                                break;
+                            case "bruh":
+                                Console.WriteLine("⢸⣿⠛⠛⠿⣷⣄⠀⠀⠀⢰⡿⠟⠛⠯⢭⣦⡄⠀⠀⠀⠀⠀⢠⡄⠀⠀⠀⠀⠀⠀⢠⡄⠀⢠⡄⠀⠀⠀⢠⡄");
+                                Console.WriteLine("⣿⠀⠀⠀⠀⠀⢹⣷⠀⠀⢸⡇⠀⢀⢀⣎⡼⠁⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⢸⡇⠀⢸⡇⠀⠀⠀⢸⡇");
+                                Console.WriteLine("⣻⠃⠀⣤⣤⣤⣼⠇⠀⠀⢸⡏⠉⠛⢯⡀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⢸⡇⠀⢸⣧⣤⣤⣤⣼⡇");
+                                Console.WriteLine("⢸⡇⠀⠛⠛⠛⠓⡄⠀⠀⢸⡇⠀⠀⠀⠈⣇⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⢸⡇⠀⢸⡏⠉⠉⠉⢹⡇");
+                                Console.WriteLine("⢸⡇⠀⠀⠀⠀⠀⡇⠀⠀⢸⡇⠀⠀⠀⠀⠀⢋⡄⠀⠀⠀⠀⠀⣧⡀⠀⠀⠀⠀⢀⣼⡇⠀⢸⡇⠀⠀⠀⢸⡇");
+                                Console.WriteLine("⢿⣧⣤⡶⠶⠚⠋⠁⠀⠀⠸⠇⠀⠀⠀⠀⠀⠀⠈⠓⠀⠀⠀⠀⠈⠿⣷⣤⣤⣾⠿⠁⠀⠀⢸⡇⠀⠀⠀⢸⡇");
+                                break;
+                       
                         }
                     }
                 }
