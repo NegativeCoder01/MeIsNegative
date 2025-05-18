@@ -209,11 +209,14 @@ namespace breadOS
                                 Console.WriteLine("System commands: ");
                                 Console.WriteLine("sys --reboot : Reboots the OS");
                                 Console.WriteLine("sys --reboot.wipe : Reboots and wipes everything");
+                                Console.WriteLine("sys --exit : exits the system");
                                 Console.WriteLine("");
                                 Console.WriteLine("Application commands: ");
                                 Console.WriteLine("app --install.help : shows you avaliable packages");
                                 Console.WriteLine("app --install [package name] : installs the application based off the package");
                                 Console.WriteLine("");
+                                Console.WriteLine("Other: ");
+                                Console.WriteLine("clear : clears the terminal");
                                 break;
                             case "user --del user[]":
                                 Console.Write("Enter your username: ");
@@ -456,7 +459,15 @@ namespace breadOS
                                 Console.WriteLine("⢸⡇⠀⠀⠀⠀⠀⡇⠀⠀⢸⡇⠀⠀⠀⠀⠀⢋⡄⠀⠀⠀⠀⠀⣧⡀⠀⠀⠀⠀⢀⣼⡇⠀⢸⡇⠀⠀⠀⢸⡇");
                                 Console.WriteLine("⢿⣧⣤⡶⠶⠚⠋⠁⠀⠀⠸⠇⠀⠀⠀⠀⠀⠀⠈⠓⠀⠀⠀⠀⠈⠿⣷⣤⣤⣾⠿⠁⠀⠀⢸⡇⠀⠀⠀⢸⡇");
                                 break;
-                       
+                            case "sys --exit":
+                                Environment.Exit(0);
+                                break;
+                            case "clear":
+                                Console.Clear();
+                                break;
+
+
+
                         }
                     }
                 }
