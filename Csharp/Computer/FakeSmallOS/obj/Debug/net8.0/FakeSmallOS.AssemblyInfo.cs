@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FakeSmallOS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bde1ca4da62d5d6d788208dcf51f8a0eaf6266a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5dd4ab65486460d019eee454c8295cb8c668f91")]
 [assembly: System.Reflection.AssemblyProductAttribute("FakeSmallOS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FakeSmallOS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
