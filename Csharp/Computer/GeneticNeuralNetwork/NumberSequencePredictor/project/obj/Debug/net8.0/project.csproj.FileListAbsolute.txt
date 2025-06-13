@@ -1,0 +1,15 @@
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.AssemblyInfoInputs.cache
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.AssemblyInfo.cs
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.csproj.CoreCompileInputs.cache
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.sourcelink.json
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/bin/Debug/net8.0/project
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/bin/Debug/net8.0/project.deps.json
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/bin/Debug/net8.0/project.runtimeconfig.json
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/bin/Debug/net8.0/project.dll
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/bin/Debug/net8.0/project.pdb
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.dll
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/refint/project.dll
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.pdb
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/project.genruntimeconfig.cache
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/project/obj/Debug/net8.0/ref/project.dll

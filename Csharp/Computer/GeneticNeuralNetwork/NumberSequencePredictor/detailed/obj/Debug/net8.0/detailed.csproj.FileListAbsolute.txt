@@ -1,0 +1,15 @@
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.AssemblyInfoInputs.cache
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.AssemblyInfo.cs
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.csproj.CoreCompileInputs.cache
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.sourcelink.json
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/bin/Debug/net8.0/detailed
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/bin/Debug/net8.0/detailed.deps.json
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/bin/Debug/net8.0/detailed.runtimeconfig.json
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/bin/Debug/net8.0/detailed.dll
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/bin/Debug/net8.0/detailed.pdb
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.dll
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/refint/detailed.dll
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.pdb
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/detailed.genruntimeconfig.cache
+/workspaces/MeIsNegative/Csharp/Computer/GeneticNeuralNetwork/NumberSequencePredictor/detailed/obj/Debug/net8.0/ref/detailed.dll
