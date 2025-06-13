@@ -89,15 +89,23 @@ namespace NeuralNetwork
             {
                 if (config.Distance1 != 0)
                 {
-                    config.Ran1 = rand.Next(1, 51);
+                    int min1 = Math.Min(config.Ran1, config.Num1);
+                    int max1 = Math.Max(config.Ran1, config.Num1);
+                    config.Ran1 = rand.Next(min1, max1 + 1);
                 }
+
                 if (config.Distance2 != 0)
                 {
-                    config.Ran2 = rand.Next(1, 51);
+                    int min2 = Math.Min(config.Ran2, config.Num2);
+                    int max2 = Math.Max(config.Ran2, config.Num2);
+                    config.Ran2 = rand.Next(min2, max2 + 1);
                 }
+
                 if (config.Distance3 != 0)
                 {
-                    config.Ran3 = rand.Next(1, 51);
+                    int min3 = Math.Min(config.Ran3, config.Num3);
+                    int max3 = Math.Max(config.Ran3, config.Num3);
+                    config.Ran3 = rand.Next(min3, max3 + 1);
                 }
 
                 int newDistance1 = Math.Abs(config.Ran1 - config.Num1);
